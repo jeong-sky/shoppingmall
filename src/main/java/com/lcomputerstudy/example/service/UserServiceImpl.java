@@ -137,8 +137,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void insertWishItems(OrderRequest item) {
-		usermapper.insertWishItems(item);
 		
+		OrderRequest result = usermapper.selectWishItem(item);
+		if(result == null) {			
+			usermapper.insertWishItems(item);
+		} else {
+			int count = result.getCount();
+			result.setCount(count + item.getCount());
+			usermapper.updateWishItem(result);
+		}
 	}
 
 
@@ -151,8 +158,8 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public void delete_WishItem(int code) {
-		usermapper.delete_WishItem(code);
+	public void deleteWishItem(OrderRequest item) {
+		usermapper.deleteWishItem(item);
 		
 	}
 

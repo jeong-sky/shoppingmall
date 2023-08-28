@@ -53,8 +53,12 @@ public interface UserMapper {
 
 	List<OrderRequest> getWishItems(String username);
 
-	void delete_WishItem(int code);
+	void deleteWishItem(OrderRequest item);
 
 	void updatePoint(@Param("id")String id, @Param("point")int point);
+
+	OrderRequest selectWishItem(OrderRequest item);
+
+	void updateWishItem(OrderRequest result);
 
 }

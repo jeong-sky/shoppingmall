@@ -73,6 +73,7 @@
 						tb.u_auth authList,
 						DATETIME,
 						address,
+						postcode,
 						phone,
 						POINT,
 						auth,
@@ -158,14 +159,34 @@
 	</insert>
 	
 	<select id="getWishItems" parameterType="String" resultType="OrderRequest">
-		SELECT wishitem AS code, id, option, count, num
+		SELECT wishitem AS code, id, option, count
 		FROM wishlist
 		WHERE id = #{username}
 	</select>
 	
-	<delete id="delete_WishItem" parameterType="Integer">
-		DELETE FROM wishlist WHERE num = #{code}
+	<delete id="deleteWishItem" parameterType="OrderRequest">
+		DELETE FROM wishlist 
+		WHERE wishitem = #{code}
+		AND id = #{id}
+		AND option = #{option}
+		AND count = #{count}
+		
 	</delete>
+	
+	<select id="selectWishItem" parameterType="OrderRequest" resultType="OrderRequest">
+		SELECT wishitem AS code, id, option, count
+		FROM wishlist
+		WHERE wishitem = #{code}
+		AND id = #{id}
+		AND option = #{option}
+	</select>
+	
+	<update id="updateWishItem" parameterType="OrderRequest">
+		UPDATE wishlist SET count = #{count}
+		WHERE wishitem = #{code}
+		AND id = #{id}
+		AND option = #{option} 
+	</update>
 	
 	<update id="updatePoint" parameterType="map">
 		UPDATE 				user

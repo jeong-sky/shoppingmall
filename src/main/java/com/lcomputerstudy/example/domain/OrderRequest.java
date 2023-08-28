@@ -8,7 +8,6 @@ public class OrderRequest {
 	private Product product;
 	private int order_num;
 	private String id;
-	private int num;
 	private int givePoint;
 	
 	public int getOrder_num() {
@@ -46,12 +45,6 @@ public class OrderRequest {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
 	}
 	public int getGivePoint() {
 		return givePoint;

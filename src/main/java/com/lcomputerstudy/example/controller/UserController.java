@@ -236,7 +236,7 @@ public class UserController {
 	public ResponseEntity<?> deleteWishItems(@Validated @RequestBody List<OrderRequest> list) {
 		
 		for(OrderRequest item : list) {
-			userService.delete_WishItem(item.getNum());
+			userService.deleteWishItem(item);
 		}
 	
 		List<OrderRequest> wishlist = userService.getWishItems(list.get(0).getId());

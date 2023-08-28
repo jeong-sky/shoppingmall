@@ -132,6 +132,7 @@ public class PublicController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		UserInfo userInfo = userservice.readUser_refresh(user.getUsername());
+		
 		List<OrderRequest> wishItems = userservice.getWishItems(user.getUsername());
 		for(OrderRequest item : wishItems) {
 			Product p = productService.getProductDetails(item.getCode());
