@@ -15,6 +15,11 @@ public class QABoard {
 	private int rownum;
 	private String con;
 	
+	private String a_title;
+	private String a_content;
+	private String a_writer;
+	private String a_datetime;
+	
 	
 	public int getNum() {
 		return num;
@@ -88,8 +93,29 @@ public class QABoard {
 	public void setCon(String con) {
 		this.con = con;
 	}
-	
-	
-	
+	public String getA_title() {
+		return a_title;
+	}
+	public void setA_title(String a_title) {
+		this.a_title = a_title;
+	}
+	public String getA_content() {
+		return a_content;
+	}
+	public void setA_content(String a_content) {
+		this.a_content = a_content;
+	}
+	public String getA_writer() {
+		return a_writer;
+	}
+	public void setA_writer(String a_writer) {
+		this.a_writer = a_writer;
+	}
+	public String getA_datetime() {
+		return a_datetime;
+	}
+	public void setA_datetime(String a_datetime) {
+		this.a_datetime = a_datetime;
+	}
 
 }

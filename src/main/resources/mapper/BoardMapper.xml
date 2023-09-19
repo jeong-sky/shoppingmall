@@ -27,19 +27,18 @@
 	</update>
 	
 	<select id="getQABoardList" resultType="QABoard">
-		select  (concat(repeat('-', depth), title))as con, 
-						ta.*
-		FROM 				
-						qaboard ta
-				
-		ORDER BY 
-						groups desc, orders asc
+		SELECT ta.*, CONCAT(ta.title, if(COUNT(ta.num) > 1, "  [답변 완료]", "  [미답변]")) AS con
+		FROM 	qaboard ta
+		GROUP BY ta.groups
+		HAVING ta.depth = 0
+		ORDER BY	groups desc, orders asc
 	</select>
 	
 	<select id="getQAPostDetails" parameterType="Integer" resultType="QABoard">
-		SELECT		*
-		FROM			qaboard
-		WHERE		num = #{num}
+		SELECT		a.*, b.title AS a_title, b.content AS a_content, b.writer AS a_writer, b.datetime AS a_datetime
+		FROM			qaboard a
+		LEFT JOIN qaboard b ON a.groups = b.groups AND a.num != b.num
+		WHERE		a.num = #{num}
 	</select>
 	
 	<insert id="insertAnswerPost1" parameterType="QABoard">  
